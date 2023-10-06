@@ -1,12 +1,11 @@
-FROM node:14
+# Використовуємо офіційний образ MongoDB
+FROM mongo:latest
 
-WORKDIR /app
+# Задаємо робочий каталог (не обов'язково, але може бути корисно)
+WORKDIR /data/db
 
-COPY package*.json ./
-RUN npm install
+# Вказуємо порт, який буде відкритий для підключення (за замовчуванням 27017)
+EXPOSE 27017
 
-COPY . .
-
-EXPOSE 8080
-
-CMD [ "node", "node.js/server.js" ]
+# Початкова команда для запуску MongoDB
+CMD ["mongod"]
